@@ -36,11 +36,112 @@
         android:id="@+id/resultText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/btnTranslate"
+        android:layout_marginTop="96dp"
+        android:text="fsdqfjsdqfmioqejfslmjqfmsqdo  fjsqfj sdqmf fdsjqm fdsqfklsdjqflksq fsdjq kl"
+        android:layout_below="@+id/langText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fr"
+        android:id="@+id/rbFromFr"
+        android:checked="false"
+        android:layout_alignBaseline="@+id/rbFromEn"
+        android:layout_alignBottom="@+id/rbFromEn"
+        android:layout_toLeftOf="@+id/rbFromCh"
+        android:layout_toStartOf="@+id/rbFromCh"
+        android:layout_marginRight="12dp"
+        android:layout_marginEnd="12dp"
+        android:clickable="true"
+        android:onClick="changeRadio" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="En"
+        android:id="@+id/rbFromEn"
+        android:checked="true"
+        android:layout_below="@+id/langText"
+        android:layout_toLeftOf="@+id/rbFromFr"
+        android:layout_toStartOf="@+id/rbFromFr"
+        android:layout_marginRight="13dp"
+        android:layout_marginEnd="13dp"
+        android:selectAllOnFocus="false"
+        android:clickable="true"
+        android:onClick="changeRadio" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ch"
+        android:id="@+id/rbFromCh"
+        android:checked="false"
+        android:layout_below="@+id/btnTranslate"
+        android:layout_toRightOf="@+id/langText"
+        android:layout_toEndOf="@+id/langText"
+        android:clickable="true"
+        android:onClick="changeRadio" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="From"
+        android:id="@+id/fromTextView"
+        android:layout_alignTop="@+id/rbFromEn"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/btnTranslate"
-        android:layout_below="@+id/langText"
-        android:layout_marginTop="31dp"
-        android:text="fsdqfjsdqfmioqejfslmjqfmsqdo  fjsqfj sdqmf fdsjqm fdsqfklsdjqflksq fsdjq kl" />
+        android:layout_marginLeft="14dp"
+        android:layout_marginStart="14dp"
+        android:layout_alignBottom="@+id/rbFromEn"
+        android:layout_toLeftOf="@+id/rbFromEn"
+        android:layout_toStartOf="@+id/rbFromEn"
+        android:textSize="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="To"
+        android:id="@+id/textView"
+        android:textSize="30dp"
+        android:layout_below="@+id/fromTextView"
+        android:layout_alignLeft="@+id/fromTextView"
+        android:layout_alignStart="@+id/fromTextView" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="En"
+        android:id="@+id/rbToEn"
+        android:checked="false"
+        android:layout_below="@+id/rbFromEn"
+        android:layout_alignRight="@+id/rbFromEn"
+        android:layout_alignEnd="@+id/rbFromEn"
+        android:clickable="true"
+        android:onClick="changeRadio" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ch"
+        android:id="@+id/rbToCh"
+        android:checked="false"
+        android:layout_below="@+id/rbFromCh"
+        android:layout_toRightOf="@+id/rbFromFr"
+        android:layout_toEndOf="@+id/rbFromFr"
+        android:clickable="true"
+        android:onClick="changeRadio" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fr"
+        android:id="@+id/rbToFr"
+        android:checked="true"
+        android:layout_below="@+id/rbFromFr"
+        android:layout_alignLeft="@+id/rbFromFr"
+        android:layout_alignStart="@+id/rbFromFr"
+        android:clickable="true"
+        android:onClick="changeRadio" />
 </RelativeLayout>
