@@ -8,8 +8,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
-import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.slin.dictionary.data.DictionarySource;
@@ -20,8 +22,10 @@ import java.util.HashMap;
 public class MainActivity extends AppCompatActivity {
 
     public static DictionarySource languages = new DictionarySource();
-    private LanguageType fromType = LanguageType.EN;
-    private LanguageType toType = LanguageType.FR;
+    private AutoCompleteTextView langText;
+    private Spinner spinnerFrom;
+    private Spinner spinnerTo;
+    private SpinnerListener spinnerListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,18 +43,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        RadioButton rbFromEn = (RadioButton) findViewById(R.id.rbFromEn);
-        RadioButton rbFromFr = (RadioButton) findViewById(R.id.rbFromFr);
-        RadioButton rbFromCh = (RadioButton) findViewById(R.id.rbFromCh);
-        RadioButton rbToEn = (RadioButton) findViewById(R.id.rbToEn);
-        RadioButton rbToFr = (RadioButton) findViewById(R.id.rbToFr);
-        RadioButton rbToCh = (RadioButton) findViewById(R.id.rbToCh);
-        rbFromEn.setChecked(true);
-        rbFromFr.setChecked(false);
-        rbFromCh.setChecked(false);
-        rbToEn.setChecked(false);
-        rbToFr.setChecked(true);
-        rbToCh.setChecked(false);
+        langText = (AutoCompleteTextView) findViewById(R.id.langText);
+        ArrayAdapter<LanguageType> langTypeAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, LanguageType.values());
+        spinnerFrom = (Spinner)findViewById(R.id.spinnerTo);
+        spinnerFrom.setAdapter(langTypeAdapter);
+        spinnerTo = (Spinner)findViewById(R.id.spinnerFrom);
+        spinnerTo.setAdapter(langTypeAdapter);
+
+        spinnerListener = new SpinnerListener(this, languages, langText);
+
+        spinnerFrom.setOnItemSelectedListener(spinnerListener);
+        spinnerTo.setOnItemSelectedListener(spinnerListener);
     }
 
     @Override
@@ -77,8 +80,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void translate(View view) {
         String searchedValue = null;
-        HashMap<String, String> fromSource = languages.get(fromType);
-        HashMap<String, String> toSource = languages.get(toType);
+        HashMap<String, String> fromSource = languages.get(spinnerFrom.getSelectedItem());
+        HashMap<String, String> toSource = languages.get(spinnerTo.getSelectedItem());
+        System.out.println(spinnerFrom.getSelectedItem());
+        System.out.println(spinnerTo.getSelectedItem());
         EditText langText = (EditText) findViewById(R.id.langText);
         for(String key: fromSource.keySet()) {
             if (fromSource.get(key).equals(langText.getText().toString())) {
@@ -88,9 +93,5 @@ public class MainActivity extends AppCompatActivity {
         }
         TextView resultView = (TextView) findViewById(R.id.resultText);
         resultView.setText(searchedValue);
-    }
-
-    public void changeRadio(View view) {
-
     }
 }
